@@ -9,8 +9,8 @@ import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Printway | Premium Commercial Printing & Packaging Solutions",
-  description: "Sri Lanka's premier printing and packaging company offering custom design, digital printing, offset printing, labels, stickers, and box packaging solutions.",
+  title: "HD Printing & Packaging | Premium Commercial Printing & Packaging Solutions",
+  description: "HD Printing & Packaging is Sri Lanka's premier printing and packaging company offering custom design, digital printing, offset printing, labels, stickers, and box packaging solutions.",
   keywords: "printing Sri Lanka, packaging Sri Lanka, custom labels, offset printing, digital printing, business cards, boxes",
 };
 
@@ -21,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
-      <body className={`${inter.className} min-h-screen flex flex-col antialiased bg-black text-white`}>
+      <body className={`${inter.className} min-h-screen flex flex-col antialiased bg-[#141214] text-white`}>
         <Navbar />
-        <main className="flex-grow flex flex-col bg-black">
+        <main className="flex-grow flex flex-col bg-[#141214]">
           {children}
         </main>
         <Footer />

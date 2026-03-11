@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Video Background */}
-      <div className="absolute inset-0 z-0 bg-black">
+      <div className="absolute inset-0 z-0 bg-[#141214]">
         <video
           autoPlay
           muted
@@ -27,8 +27,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
         {/* CMYK Accent Glows */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00AEEF] rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-pulse-slow" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#EC008C] rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-pulse-slow delay-1000" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8f2744] rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-pulse-slow" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#6f102f] rounded-full mix-blend-screen filter blur-[150px] opacity-10 animate-pulse-slow delay-1000" />
       </div>
 
       <div className="container relative z-10 px-4 md:px-6 pt-32 pb-20 flex flex-col md:flex-row items-center gap-12 lg:gap-20">
@@ -41,8 +41,8 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm backdrop-blur-md"
           >
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFF200] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#FFF200]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c08a98] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#c08a98]"></span>
             </span>
             <span className="text-white/90 font-medium tracking-wide">
               Premier Printing & Packaging
@@ -59,7 +59,7 @@ export function Hero() {
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/40">
               Excellence.
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] via-[#EC008C] to-[#FFF200] animate-gradient-x">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#7f1d1d] via-[#ef4444] to-[#fbbf24] animate-gradient-x">
               Impact.
             </span>
           </motion.h1>
@@ -70,9 +70,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="text-lg md:text-xl text-white/70 max-w-xl leading-relaxed font-light"
           >
-            We don't just print boxes and labels; we architect brand
+            We don&apos;t just print boxes and labels; we architect brand
             experiences. Industry-leading offset and digital printing for Sri
-            Lanka's finest brands.
+            Lanka&apos;s finest brands.
           </motion.p>
 
           <motion.div
@@ -84,21 +84,21 @@ export function Hero() {
             <Link href="/quote" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="group w-full sm:w-auto text-base font-semibold h-14 px-8 bg-white text-black hover:bg-white/90 hover:scale-105 transition-all duration-300 rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                className="group w-full sm:w-auto text-base font-semibold h-14 px-8 text-white bg-gradient-to-r from-[#5d1515] via-[#ff4040] to-[#f8b91b] bg-[length:150%_150%] animate-gradient-x hover:brightness-110 hover:scale-105 transition-all duration-300 rounded-full shadow-[0_0_30px_rgba(239,68,68,0.35)]"
               >
                 Get a Custom Quote
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="#portfolio" className="w-full sm:w-auto">
-              <Button
+              {/* <Button
                 size="lg"
                 variant="outline"
-                className="group w-full sm:w-auto text-base font-semibold h-14 px-8 border-white/20 hover:bg-white/10 text-white rounded-full bg-black/20 backdrop-blur-md transition-all duration-300"
+                className="group w-full sm:w-auto text-base font-semibold h-14 px-8 border-[#c08a98]/30 hover:bg-[#6f102f]/15 text-white rounded-full bg-[#141214]/30 backdrop-blur-md transition-all duration-300"
               >
                 <Play className="mr-2 h-4 w-4 fill-white group-hover:scale-110 transition-transform" />
                 View Showreel
-              </Button>
+              </Button> */}
             </Link>
           </motion.div>
         </div>

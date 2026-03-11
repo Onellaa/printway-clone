@@ -8,15 +8,15 @@ import { ExternalLink, Search } from "lucide-react";
 const categories = ["All Work", "Packaging", "Stickers & Labels", "Branding", "Offset Printing"];
 
 const portfolioData = [
-  { id: 1, title: "Luxe Skincare Box", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#EC008C]" },
-  { id: 2, title: "Corporate Brochure", category: "Offset Printing", image: "/images/printing_machine.png", color: "from-[#00AEEF]" },
-  { id: 3, title: "Premium Foil Labels", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#FFF200]" },
-  { id: 4, title: "Aurélia Botanicals", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#FFF200]" },
-  { id: 5, title: "Aurora Financial Identity", category: "Branding", image: "/images/branding_visuals.png", color: "from-[#EC008C]" },
-  { id: 6, title: "Artisan Chocolate Packaging", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#00AEEF]" },
-  { id: 7, title: "Tech Hardware Sleeves", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#EC008C]" },
-  { id: 8, title: "Real Estate Portfolios", category: "Offset Printing", image: "/images/printing_machine.png", color: "from-[#00AEEF]" },
-  { id: 9, title: "Brewery Can Labels", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#FFF200]" },
+  { id: 1, title: "Luxe Skincare Box", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#ef4444]" },
+  { id: 2, title: "Corporate Brochure", category: "Offset Printing", image: "/images/printing_machine.png", color: "from-[#7f1d1d]" },
+  { id: 3, title: "Premium Foil Labels", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#fbbf24]" },
+  { id: 4, title: "Aurélia Botanicals", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#fbbf24]" },
+  { id: 5, title: "Aurora Financial Identity", category: "Branding", image: "/images/branding_visuals.png", color: "from-[#ef4444]" },
+  { id: 6, title: "Artisan Chocolate Packaging", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#7f1d1d]" },
+  { id: 7, title: "Tech Hardware Sleeves", category: "Packaging", image: "/images/packaging_boxes.png", color: "from-[#ef4444]" },
+  { id: 8, title: "Real Estate Portfolios", category: "Offset Printing", image: "/images/printing_machine.png", color: "from-[#7f1d1d]" },
+  { id: 9, title: "Brewery Can Labels", category: "Stickers & Labels", image: "/images/label_printing.png", color: "from-[#fbbf24]" },
 ];
 
 export default function PortfolioPage() {
@@ -27,17 +27,17 @@ export default function PortfolioPage() {
     : portfolioData.filter(item => item.category === activeCategory);
 
   return (
-    <div className="pt-32 pb-0 bg-[#020202] min-h-screen">
+    <div className="pt-32 pb-0 bg-[#141214] min-h-screen">
       
       {/* Hero Section */}
       <div className="relative overflow-hidden mb-20">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-gradient-to-r from-[#00AEEF]/10 via-[#EC008C]/10 to-[#FFF200]/10 rounded-[100%] blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-gradient-to-r from-[#7f1d1d]/10 via-[#ef4444]/10 to-[#fbbf24]/10 rounded-[100%] blur-[120px] pointer-events-none" />
         
         <div className="container relative z-10 mx-auto px-4 md:px-6 text-center max-w-4xl pt-10 pb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-[0.2em] font-bold text-[#FFF200] mb-8 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-[0.2em] font-bold text-[#fbbf24] mb-8 backdrop-blur-md"
           >
             <Search className="w-3 h-3" />
             <span>Our Masterpieces</span>
@@ -49,7 +49,7 @@ export default function PortfolioPage() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[1.05]"
           >
-            The Print <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/50 to-white/10">Archive</span>
+            The Print <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ef4444] to-[#fbbf24]">Archive</span>
           </motion.h1>
           
           <motion.p 
@@ -78,8 +78,8 @@ export default function PortfolioPage() {
               onClick={() => setActiveCategory(cat)}
               className={`px-8 py-3 rounded-full text-sm uppercase tracking-wider font-bold transition-all duration-300 ${
                 activeCategory === cat 
-                  ? "bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105" 
-                  : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-white border border-white/10 backdrop-blur-md"
+                  ? "bg-[#7f1d1d] text-white shadow-[0_0_20px_rgba(239,68,68,0.3)] scale-105" 
+                  : "bg-white/5 text-white/50 hover:bg-white/10 hover:text-[#fbbf24] border border-white/10 backdrop-blur-md"
               }`}
             >
               {cat}
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-                className={`group relative rounded-[2rem] overflow-hidden bg-[#0a0a0a] border border-white/5 shadow-2xl ${
+                className={`group relative rounded-[2rem] overflow-hidden bg-[#1f171b] border border-white/5 hover:border-[#ef4444]/30 shadow-2xl ${
                   i % 3 === 0 ? "md:col-span-2 lg:col-span-1 aspect-[4/3] lg:aspect-[3/4]" : "aspect-[4/3] lg:aspect-square"
                 }`}
               >
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
 
                 <div className="absolute inset-0 z-30 flex flex-col justify-end p-8 md:p-10">
                   <div className="overflow-hidden mb-3">
-                    <span className="block text-xs font-bold tracking-[0.3em] uppercase transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out text-white/50">
+                    <span className="block text-xs font-bold tracking-[0.3em] uppercase transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out text-[#fbbf24]">
                       {item.category}
                     </span>
                   </div>
@@ -126,13 +126,13 @@ export default function PortfolioPage() {
                       {item.title}
                     </h3>
                     
-                    <button className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out hover:bg-white hover:text-black">
+                    <button className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out hover:bg-[#fbbf24] hover:text-[#141214]">
                       <ExternalLink className="w-5 h-5" />
                     </button>
                   </div>
                   
                   {/* Decorative line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-white to-transparent group-hover:w-full transition-all duration-700 ease-out" />
+                  <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#ef4444] to-[#fbbf24] group-hover:w-full transition-all duration-700 ease-out" />
                 </div>
               </motion.div>
             ))}

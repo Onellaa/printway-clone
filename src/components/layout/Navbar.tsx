@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X, Printer } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { BrandLogo } from "@/components/layout/BrandLogo";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -18,6 +20,7 @@ const navLinks = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,35 +34,46 @@ export function Navbar() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-3"
+          ? "bg-[#141214]/85 backdrop-blur-md border-b border-white/10 py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded bg-white text-black flex items-center justify-center group-hover:bg-[#00AEEF] transition-colors">
-            <Printer size={24} />
-          </div>
-          <span className="text-xl font-bold tracking-tight">Printway</span>
+          <BrandLogo
+            iconClassName="h-11 md:h-12 transition-transform duration-300 group-hover:scale-[1.03]"
+            textClassName="hidden sm:block"
+          />
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-white/80 hover:text-white transition-colors relative group"
-            >
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00AEEF] transition-all group-hover:w-full" />
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`text-sm font-medium transition-colors relative group ${
+                  isActive ? "text-[#fbbf24]" : "text-white/80 hover:text-white"
+                }`}
+              >
+                {link.name}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 transition-all ${
+                    isActive
+                      ? "w-full bg-[#ef4444]"
+                      : "w-0 bg-[#ef4444] group-hover:w-full"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
           <Link href="/quote">
-            <Button className="bg-white text-black hover:bg-gray-200">
+            <Button className="bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
               Request a Quote
             </Button>
           </Link>
@@ -81,25 +95,30 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-b border-white/10 shadow-2xl md:hidden"
+            className="absolute top-full left-0 w-full bg-[#141214]/95 backdrop-blur-lg border-b border-white/10 shadow-2xl md:hidden"
           >
             <div className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-white/80 hover:text-white border-b border-white/5 pb-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`text-lg font-medium border-b border-white/5 pb-2 transition-colors ${
+                      isActive ? "text-[#fbbf24]" : "text-white/80 hover:text-white"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
               <Link
                 href="/quote"
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4"
               >
-                <Button className="w-full bg-white text-black hover:bg-gray-200">
+                <Button className="w-full bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
                   Request a Quote
                 </Button>
               </Link>
