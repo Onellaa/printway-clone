@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, MessageSquare } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
@@ -62,7 +62,7 @@ export function CTASection() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row shrink-0 gap-4 mt-8 md:mt-0 w-full md:w-auto">
+            <div className="flex shrink-0 mt-8 md:mt-0 w-full md:w-auto">
               <Link
                 href="/quote"
                 className="w-full sm:w-auto relative group/btn"
@@ -73,16 +73,6 @@ export function CTASection() {
                 >
                   Request a Quote
                   <ArrowRight className="ml-3 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Link href="/contact" className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full sm:w-auto h-16 px-8 text-lg font-bold border-[#fbbf24]/20 hover:bg-[#fbbf24]/10 text-white bg-white/5 backdrop-blur-md rounded-full transition-colors duration-300"
-                >
-                  <MessageSquare className="mr-3 w-5 h-5 opacity-70 text-[#fbbf24]" />
-                  Talk to an Expert
                 </Button>
               </Link>
             </div>

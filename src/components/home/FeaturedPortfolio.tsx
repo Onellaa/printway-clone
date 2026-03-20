@@ -146,7 +146,7 @@ const portfolioItems = [
   {
     title: "Eco-Luxe Cosmetics",
     category: "Sustainable Packaging",
-    image: "/images/packaging_boxes.png",
+    image: "/images/b1.png",
     description: "Premium biodegradable packaging made with sustainable materials and soy-based inks.",
     color: "from-[#7f1d1d]/25 to-transparent",
   },
@@ -167,7 +167,7 @@ const portfolioItems = [
   {
     title: "Gourmet Confections",
     category: "Custom Box Design",
-    image: "/images/packaging_boxes.png",
+    image: "/images/b1.png",
     description: "Rigid box manufacturing with custom die-cut inserts and magnetic closures.",
     color: "from-[#7f1d1d]/25 to-transparent",
   },

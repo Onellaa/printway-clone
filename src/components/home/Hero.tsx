@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
@@ -15,11 +16,11 @@ export function Hero() {
           muted
           loop
           playsInline
-          poster="/images/v1.mp4"
+          poster="/images/v11.mp4"
           className="object-cover w-full h-full opacity-60"
         >
           {/* A generic tech/abstract placeholder video, but suggest replacing with actual print video */}
-          <source src="/images/v1.mp4" type="video/mp4" />
+          <source src="/images/v11.mp4" type="video/mp4" />
         </video>
 
         {/* Dark gradient overlays for readability and cinematic feel */}
@@ -90,57 +91,90 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link href="#portfolio" className="w-full sm:w-auto">
-              {/* <Button
-                size="lg"
-                variant="outline"
-                className="group w-full sm:w-auto text-base font-semibold h-14 px-8 border-[#c08a98]/30 hover:bg-[#6f102f]/15 text-white rounded-full bg-[#141214]/30 backdrop-blur-md transition-all duration-300"
-              >
-                <Play className="mr-2 h-4 w-4 fill-white group-hover:scale-110 transition-transform" />
-                View Showreel
-              </Button> */}
-            </Link>
           </motion.div>
         </div>
 
-        {/* Right column: Floating Glass Card (Optional Stats) */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          className="hidden lg:flex flex-1 justify-end"
+          transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
+          className="relative hidden flex-1 lg:flex items-center justify-center"
         >
-          <div className="relative w-full max-w-sm">
-            {/* Glassmorphism Card */}
-            <div className="relative z-10 p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl overflow-hidden group hover:bg-white/10 transition-colors duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white/50 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          <div className="relative h-[560px] w-full max-w-[520px]">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-6 rounded-full border border-dashed border-white/10"
+            />
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-16 rounded-full border border-dashed border-[#ef4444]/20"
+            />
 
-              <div className="flex flex-col gap-6">
-                <div>
-                  <h3 className="text-4xl font-black text-white mb-1">15+</h3>
-                  <p className="text-sm text-white/60 uppercase tracking-widest font-semibold">
-                    Years Experience
-                  </p>
-                </div>
-                <div className="h-[1px] w-full bg-white/10" />
-                <div>
-                  <h3 className="text-4xl font-black text-white mb-1">10M+</h3>
-                  <p className="text-sm text-white/60 uppercase tracking-widest font-semibold">
-                    Units Printed
-                  </p>
-                </div>
-                <div className="h-[1px] w-full bg-white/10" />
-                <div>
-                  <h3 className="text-4xl font-black text-white mb-1">200+</h3>
-                  <p className="text-sm text-white/60 uppercase tracking-widest font-semibold">
-                    Brand Partners
-                  </p>
-                </div>
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-6 top-10 w-[220px]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-md">
+                <Image
+                  src="/images/packaging_boxes.png"
+                  alt="Packaging sample"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               </div>
-            </div>
+            </motion.div>
 
-            {/* Decorative background blur for card */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-white/10 to-transparent rounded-[2.5rem] blur-xl opacity-50 z-0" />
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute right-4 top-24 w-[210px]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-md">
+                <Image
+                  src="/images/label_printing.png"
+                  alt="Label sample"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-10 left-1/2 w-[250px] -translate-x-1/2"
+            >
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-md">
+                <Image
+                  src="/images/l1.png"
+                  alt="Printing sample"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              </div>
+            </motion.div>
+
+            <motion.div
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute right-14 top-8 h-6 w-6 rounded-full bg-[#ef4444] shadow-[0_0_28px_rgba(239,68,68,0.8)]"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.12, 1] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-2 bottom-28 h-4 w-4 rounded-full bg-[#fbbf24] shadow-[0_0_24px_rgba(251,191,36,0.75)]"
+            />
+            <motion.div
+              animate={{ x: [0, 8, 0], y: [0, -8, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-24 right-0 h-20 w-20 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
+            />
           </div>
         </motion.div>
       </div>

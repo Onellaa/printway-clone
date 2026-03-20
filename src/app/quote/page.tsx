@@ -1,19 +1,20 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { submitQuote } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useEffect } from "react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Calculator, ArrowRight, UploadCloud, CheckCircle2 } from "lucide-react";
 
 export default function QuotePage() {
   const [state, formAction, isPending] = useActionState(submitQuote, null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
 
   useEffect(() => {
     if (state?.success) {
@@ -21,10 +22,20 @@ export default function QuotePage() {
         icon: <CheckCircle2 className="text-green-400" />,
         style: { background: "#181316", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" }
       });
+      formRef.current?.reset();
+      setFileName(null);
     } else if (state?.success === false) {
       toast.error(state.message);
     }
   }, [state]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFileName(e.target.files[0].name);
+    } else {
+      setFileName(null);
+    }
+  };
 
   const formVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -76,7 +87,7 @@ export default function QuotePage() {
           {/* Subtle inner highlight */}
           <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#ef4444]/30 to-transparent" />
           
-          <form action={formAction} className="space-y-10">
+          <form action={formAction} ref={formRef} className="space-y-10">
             
             {/* Section 1 */}
             <div className="space-y-8">
@@ -115,18 +126,15 @@ export default function QuotePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <Label htmlFor="service_type" className="text-white/70 ml-1">Primary Requirement *</Label>
-                  <Select name="service_type" required>
+                  <Select name="service_type">
                     <SelectTrigger className="bg-[#241b20] border-white/5 focus:border-[#ef4444]/30 h-14 rounded-xl px-5 text-lg text-white">
                       <SelectValue placeholder="Select service..." />
                     </SelectTrigger>
                     <SelectContent className="bg-[#241b20] border-white/10 text-white">
-                      <SelectItem value="Offset Printing">Commercial Offset Printing</SelectItem>
-                      <SelectItem value="Digital Printing">Digital Short Run</SelectItem>
-                      <SelectItem value="Custom Packaging">Custom Box Packaging</SelectItem>
-                      <SelectItem value="Labels & Stickers">Premium Labels & Stickers</SelectItem>
-                      <SelectItem value="Branding Materials">Corporate Stationery / Branding</SelectItem>
-                      <SelectItem value="Large Format">Large Format / Signage</SelectItem>
-                      <SelectItem value="Other">Custom / Multi-service project</SelectItem>
+                      <SelectItem value="Machine Finish">Machine Finish</SelectItem>
+                      <SelectItem value="Label Detail">Label Detail</SelectItem>
+                      <SelectItem value="Brand Assets">Brand Assets</SelectItem>
+                      <SelectItem value="Box Packaging">Box Packaging</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -158,20 +166,35 @@ export default function QuotePage() {
               {/* Advanced Upload Area - Visual mockup behavior */}
               <div className="space-y-3">
                 <Label htmlFor="file" className="text-white/70 ml-1">Artwork or Reference File</Label>
-                <div className="relative group rounded-xl border-2 border-dashed border-white/10 hover:border-[#fbbf24]/30 bg-[#241b20] hover:bg-[#1a1a1a] transition-all duration-300">
-                  <Input type="file" id="file" name="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+                <div className="relative group rounded-xl border-2 border-dashed border-white/10 hover:border-[#fbbf24]/30 bg-[#241b20] hover:bg-[#1a1a1a] transition-all duration-300 overflow-hidden">
+                  <Input 
+                    type="file" 
+                    id="file" 
+                    name="file" 
+                    onChange={handleFileChange}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
+                  />
                   <div className="flex flex-col items-center justify-center p-8 text-center pointer-events-none">
                     <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-white/10 transition-colors">
-                      <UploadCloud className="w-6 h-6 text-white/50 group-hover:text-[#fbbf24]" />
+                      <UploadCloud className={`w-6 h-6 ${fileName ? "text-[#fbbf24]" : "text-white/50 group-hover:text-[#fbbf24]"}`} />
                     </div>
-                    <p className="text-base text-white/70 mb-1 font-medium">Click or drag file to upload</p>
-                    <p className="text-sm text-white/40">PDF, AI, PSD, ZIP up to 25MB</p>
+                    {fileName ? (
+                      <>
+                        <p className="text-base text-[#fbbf24] mb-1 font-medium break-all">{fileName}</p>
+                        <p className="text-sm text-white/40">File selected</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-base text-white/70 mb-1 font-medium">Click or drag file to upload</p>
+                        <p className="text-sm text-white/40">PDF, AI, PSD, ZIP up to 25MB</p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
             </div>
 
-            <Button disabled={isPending} className="w-full h-16 text-lg font-bold bg-[#7f1d1d] text-white hover:bg-[#ef4444] transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.28)] hover:shadow-[0_0_40px_rgba(239,68,68,0.35)] rounded-xl mt-8 group flex items-center justify-center overflow-hidden relative">
+            <Button type="submit" disabled={isPending} className="w-full h-16 text-lg font-bold bg-[#7f1d1d] text-white hover:bg-[#ef4444] transition-all duration-300 shadow-[0_0_30px_rgba(239,68,68,0.28)] hover:shadow-[0_0_40px_rgba(239,68,68,0.35)] rounded-xl mt-8 group flex items-center justify-center overflow-hidden relative">
               <span className="relative z-10 flex items-center">
                 {isPending ? "Transmitting Requirements..." : "Submit Quote Request"}
                 {!isPending && <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />}

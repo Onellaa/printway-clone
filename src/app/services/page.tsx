@@ -1,148 +1,205 @@
 "use client";
 
-import { ServicesGrid } from "@/components/home/ServicesGrid";
-import { CTASection } from "@/components/home/CTASection";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { Box, BriefcaseBusiness, BookOpenText, FileText, Package, ShoppingBag, Sticker, Newspaper } from "lucide-react";
+import { CTASection } from "@/components/home/CTASection";
+
+const packagingServices = [
+  {
+    name: "Any Type of Box Packaging",
+    description: "Custom box packaging solutions for retail, product display, gifting, shipping, and branded presentation.",
+    image: "/images/packaging_boxes.png",
+    icon: Box,
+  },
+  {
+    name: "Shoe Boxes",
+    description: "Durable and clean-finished shoe boxes designed for retail presentation and product protection.",
+    image: "/images/l1.png",
+    icon: Package,
+  },
+  {
+    name: "Paint Brush Boxes",
+    description: "Specialized boxes for paint brushes and hardware products with strong structure and shelf appeal.",
+    image: "/images/p2.png",
+    icon: BriefcaseBusiness,
+  },
+  {
+    name: "Bags",
+    description: "Paper and branded carry bag options for stores, promotions, events, and packaging support.",
+    image: "/images/w1.png",
+    icon: ShoppingBag,
+  },
+];
+
+const printingServices = [
+  {
+    name: "Business Cards",
+    description: "Professional business cards with clean printing, quality stock, and premium finishing options.",
+    image: "/images/b1.png",
+    icon: BriefcaseBusiness,
+  },
+  {
+    name: "Leaflets",
+    description: "Promotional leaflets for campaigns, launches, menus, and marketing handouts.",
+    image: "/images/b3.png",
+    icon: FileText,
+  },
+  {
+    name: "Posters",
+    description: "High-visibility posters for indoor and outdoor promotional use with sharp color reproduction.",
+    image: "/images/b4.png",
+    icon: FileText,
+  },
+  {
+    name: "Stickers",
+    description: "Custom stickers for product labeling, promotions, packaging, and branding applications.",
+    image: "/images/s1.png",
+    icon: Sticker,
+  },
+  {
+    name: "Books",
+    description: "Book printing for educational, commercial, and corporate projects with dependable finishing.",
+    image: "/images/s2.png",
+    icon: BookOpenText,
+  },
+  {
+    name: "Magazines",
+    description: "Magazine printing with crisp detail, smooth paper handling, and consistent large-run quality.",
+    image: "/images/s3.png",
+    icon: Newspaper,
+  },
+  {
+    name: "Other Related Printing Items",
+    description: "We also produce a wide range of custom printed materials based on client requirements.",
+    image: "/images/branding_visuals.png",
+    icon: FileText,
+  },
+];
+
+type ServiceItem = {
+  name: string;
+  description: string;
+  image: string;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
+function ServiceGroup({
+  title,
+  subtitle,
+  items,
+}: {
+  title: string;
+  subtitle: string;
+  items: ServiceItem[];
+}) {
+  return (
+    <section className="relative py-24">
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-[#fbbf24] backdrop-blur-md">
+              {title}
+            </div>
+            <h2 className="text-3xl font-black tracking-tight text-white md:text-5xl">
+              {title}
+            </h2>
+          </div>
+          <p className="max-w-xl text-base leading-relaxed text-white/55 md:text-right">
+            {subtitle}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {items.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: index * 0.06 }}
+                whileHover={{ y: -8 }}
+                className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-[0_18px_60px_rgba(0,0,0,0.34)]"
+              >
+                <div className="relative  h-100 w-full overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-fill transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  <div className="absolute left-5 top-5 rounded-2xl border border-white/15 bg-black/30 p-3 backdrop-blur-md">
+                    <Icon className="h-5 w-5 text-[#ef4444]" />
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white">{item.name}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-white/60">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function ServicesPage() {
   return (
-    <div className="pt-32 pb-0 bg-[#141214] min-h-screen">
-      
-      {/* Hero Section */}
-      <div className="relative overflow-hidden mb-16">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#ef4444]/10 to-transparent rounded-[100%] blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#fbbf24]/10 to-transparent rounded-[100%] blur-[100px] pointer-events-none" />
-        
-        <div className="container relative z-10 mx-auto px-4 md:px-6 text-center max-w-4xl pt-10 pb-16">
+    <div className="min-h-screen bg-[#141214] pb-0 pt-32">
+      <div className="relative overflow-hidden border-b border-white/5 pb-16">
+        <div className="absolute right-0 top-0 h-[420px] w-[420px] rounded-full bg-[#ef4444]/10 blur-[110px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full bg-[#fbbf24]/10 blur-[110px] pointer-events-none" />
+
+        <div className="container relative z-10 mx-auto max-w-5xl px-4 text-center md:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-[0.2em] font-bold text-[#fbbf24] mb-8 backdrop-blur-md"
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-[#fbbf24] backdrop-blur-md"
           >
-            <span>Our Capabilities</span>
+            Printing & Packaging Services
           </motion.div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter leading-[1.05]"
+            className="text-5xl font-black tracking-tight text-white md:text-7xl"
           >
-            Engineered for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7f1d1d] via-[#ef4444] to-[#fbbf24]">Prestige</span>
+            Clean, professional solutions for print and packaging needs.
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-white/50 font-light leading-relaxed max-w-3xl mx-auto"
+            className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white/55 md:text-xl"
           >
-            From massive offset runs to bespoke luxury packaging, we provide end-to-end, world-class printed solutions.
+            We offer packaging services and printing services for boxes, business materials,
+            promotional items, and other related custom print products.
           </motion.p>
         </div>
       </div>
 
-      <ServicesGrid />
+      <ServiceGroup
+        title="Packaging Services"
+        subtitle="Box and bag packaging options grouped clearly for retail, product presentation, and protective packaging requirements."
+        items={packagingServices}
+      />
 
-      <section className="py-32 bg-[#181316] relative" id="details">
-        {/* Abstract Grid Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="space-y-40">
-            
-            {/* Service 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" id="offset-printing">
-              <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="order-2 lg:order-1 relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#ef4444]/20 to-transparent rounded-[2.5rem] blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
-                <img src="/images/printing_machine.png" alt="Offset Printing" className="relative rounded-[2.5rem] border border-white/10 w-full object-cover aspect-square shadow-2xl" />
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="order-1 lg:order-2"
-              >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">
-                  <span className="block text-[#ef4444] text-2xl tracking-widest uppercase mb-2 font-bold">01</span>
-                  Offset Printing
-                </h2>
-                <p className="text-xl text-white/50 font-light leading-relaxed mb-8">
-                  Our core strength lies in ultra-precise, high-volume offset printing. Using state-of-the-art European machinery, we guarantee perfect CMYK color reproduction and impeccable consistency across thousands of copies.
-                </p>
-                <ul className="space-y-4 text-white/80 font-medium text-lg">
-                  {[
-                    "Corporate Brochures & Premium Catalogs",
-                    "Coffee Table Books & Magazines",
-                    "Mass Market Quality Flyers",
-                    "Posters & Branded Calendars"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4">
-                      <div className="w-8 h-8 rounded-full bg-[#ef4444]/10 flex items-center justify-center border border-[#ef4444]/20 text-[#ef4444]">
-                        ✓
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </div>
-
-            {/* Service 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" id="labels">
-              <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-              >
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">
-                  <span className="block text-[#fbbf24] text-2xl tracking-widest uppercase mb-2 font-bold">02</span>
-                  Labels & Stickers
-                </h2>
-                <p className="text-xl text-white/50 font-light leading-relaxed mb-8">
-                  Enhance your product&apos;s shelf appeal with luxurious custom labels. We specialize in die-cut, roll, and sheet labels, elevated with cold foil, embossing, and spot UV finishes.
-                </p>
-                <ul className="space-y-4 text-white/80 font-medium text-lg">
-                  {[
-                    "Artisanal Product Packaging Labels",
-                    "Ultra-Clear / Transparent Stickers",
-                    "Foil-stamped Premium Beverage Labels",
-                    "Highly Durable Weatherproof Vinyl"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4">
-                      <div className="w-8 h-8 rounded-full bg-[#fbbf24]/10 flex items-center justify-center border border-[#fbbf24]/20 text-[#fbbf24]">
-                        ✓
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-              
-              <motion.div 
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className="relative group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#fbbf24]/20 to-transparent rounded-[2.5rem] blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
-                <img src="/images/label_printing.png" alt="Labels and Stickers" className="relative rounded-[2.5rem] border border-white/10 w-full object-cover aspect-[4/3] shadow-2xl" />
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      <ServiceGroup
+        title="Printing Services"
+        subtitle="Printed materials for branding, promotion, publishing, and everyday business use."
+        items={printingServices}
+      />
 
       <CTASection />
     </div>

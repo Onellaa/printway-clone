@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, ShieldCheck, Users, Zap } from "lucide-react";
 import { CTASection } from "@/components/home/CTASection";
 
 export default function AboutPage() {
@@ -40,13 +39,13 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8">
               <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl flex gap-6 items-center">
-                <div className="text-[#ef4444]">
+                {/* <div className="text-[#ef4444]">
                   <span className="block text-4xl font-black">20+</span>
                   <span className="text-white/70 text-sm font-medium uppercase tracking-wider">Years Exp.</span>
-                </div>
+                </div> */}
                 <div className="w-[1px] h-12 bg-white/20" />
                 <div className="text-[#fbbf24]">
-                  <span className="block text-4xl font-black">5K+</span>
+                  <span className="block text-4xl font-black">100+</span>
                   <span className="text-white/70 text-sm font-medium uppercase tracking-wider">Happy Clients</span>
                 </div>
               </div>
@@ -54,32 +53,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </div>
-
-      <section className="py-24 bg-[#181316] border-y border-white/5">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: <Award size={32} />, title: "Award Winning Quality", desc: "Recognized for excellence in precision offset printing." },
-              { icon: <ShieldCheck size={32} />, title: "ISO Certified Process", desc: "Strict quality control at every stage of production." },
-              { icon: <Zap size={32} />, title: "Rapid Turnaround", desc: "Equipped to handle high-volume rush orders efficiently." },
-              { icon: <Users size={32} />, title: "Dedicated Specialists", desc: "Expert pre-press and structural design teams." },
-            ].map((feature, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-[#1f171b] border border-white/5 p-8 rounded-2xl hover:border-[#ef4444]/30 transition-colors"
-              >
-                <div className="text-[#fbbf24] mb-6">{feature.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-white/60">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CTASection />
     </div>

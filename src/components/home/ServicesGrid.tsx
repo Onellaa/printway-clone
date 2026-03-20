@@ -55,13 +55,13 @@ const services = [
     bgAccent: "from-[#7f1d1d]/30 via-[#ef4444]/20 to-[#fbbf24]/10",
   },
   {
-    title: "Large Format Printing",
-    description:
-      "High-resolution banners, posters, hoardings, and indoor/outdoor signage solutions.",
-    icon: <ImageIcon className="text-[#fbbf24] relative z-20" size={40} strokeWidth={1.5} />,
-    href: "/services#large-format",
-    bgAccent: "from-[#ef4444]/25 via-[#7f1d1d]/20 to-[#fbbf24]/10",
-  },
+  title: "Printed Box Solutions",
+  description:
+    "Professional printed box solutions for shoe boxes, craft boxes, paint brush boxes, and other custom box types.",
+  icon: <ImageIcon className="text-[#fbbf24] relative z-20" size={40} strokeWidth={1.5} />,
+  href: "/services#printed-box-solutions",
+  bgAccent: "from-[#ef4444]/25 via-[#7f1d1d]/20 to-[#fbbf24]/10",
+},
 ];
 
 type ServiceCard = (typeof services)[number];
