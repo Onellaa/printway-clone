@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 
 export function Footer() {
@@ -13,24 +21,48 @@ export function Footer() {
               <BrandLogo iconClassName="h-12" />
             </Link>
             <p className="text-sm mb-6 max-w-xs">
-              Sri Lanka&apos;s premier printing and packaging solutions provider. We deliver premium quality prints that elevate your brand.
+              Sri Lanka&apos;s premier printing and packaging solutions
+              provider. We deliver premium quality prints that elevate your
+              brand.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#8f2744] hover:text-white transition-all text-white"><Facebook size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#6f102f] hover:text-white transition-all text-white"><Instagram size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#8f2744] hover:text-white transition-all text-white"><Linkedin size={18} /></a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#c08a98] hover:text-[#141214] transition-all text-white"><Twitter size={18} /></a>
-            </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-white transition-colors">Our Services</Link></li>
-              <li><Link href="/packaging" className="hover:text-white transition-colors">Packaging Solutions</Link></li>
-              <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-white transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="hover:text-white transition-colors"
+                >
+                  Our Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/packaging"
+                  className="hover:text-white transition-colors"
+                >
+                  Packaging Solutions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="hover:text-white transition-colors"
+                >
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -38,11 +70,46 @@ export function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/services#offset-printing" className="hover:text-white transition-colors">Offset Printing</Link></li>
-              <li><Link href="/services#digital-printing" className="hover:text-white transition-colors">Digital Printing</Link></li>
-              <li><Link href="/services#packaging" className="hover:text-white transition-colors">Custom Packaging</Link></li>
-              <li><Link href="/services#labels" className="hover:text-white transition-colors">Labels & Stickers</Link></li>
-              <li><Link href="/services#branding" className="hover:text-white transition-colors">Branding Materials</Link></li>
+              <li>
+                <Link
+                  href="/services#offset-printing"
+                  className="hover:text-white transition-colors"
+                >
+                  Offset Printing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#digital-printing"
+                  className="hover:text-white transition-colors"
+                >
+                  Digital Printing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#packaging"
+                  className="hover:text-white transition-colors"
+                >
+                  Custom Packaging
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#labels"
+                  className="hover:text-white transition-colors"
+                >
+                  Labels & Stickers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#branding"
+                  className="hover:text-white transition-colors"
+                >
+                  Branding Materials
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -52,25 +119,38 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex gap-3 items-start">
                 <MapPin size={18} className="text-[#8f2744] shrink-0 mt-0.5" />
-                <span>123 HD Printing Avenue, Colombo 03, Sri Lanka</span>
+                <span>
+                  {" "}
+                  341/1/112/C, Mihidupura, Palenwatta, Pannipitiya. Sri Lanka
+                </span>
               </li>
               <li className="flex gap-3 items-center">
                 <Phone size={18} className="text-[#8f2744] shrink-0" />
-                <span>+94 11 234 5678</span>
+                <span>+94 72 888 8509</span>
               </li>
               <li className="flex gap-3 items-center">
                 <Mail size={18} className="text-[#8f2744] shrink-0" />
-                <span>info@printway.lk</span>
+                <span>hdprintingandpackaging@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-white/50">
-          <p>&copy; {new Date().getFullYear()} HD Printing &amp; Packaging. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} HD Printing &amp; Packaging. All
+            rights reserved.
+          </p>
           <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link
+              href="/privacy"
+              className="hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>
