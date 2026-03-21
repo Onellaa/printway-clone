@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "HD Printing & Packaging | Premium Commercial Printing & Packaging Solutions",
   description: "HD Printing & Packaging is Sri Lanka's premier printing and packaging company offering custom design, digital printing, offset printing, labels, stickers, and box packaging solutions.",
   keywords: "printing Sri Lanka, packaging Sri Lanka, custom labels, offset printing, digital printing, business cards, boxes",
+   icons: {
+    icon: "/Logo.ico",
+  },
 };
 
 export default function RootLayout({
