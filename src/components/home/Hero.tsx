@@ -71,8 +71,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="text-lg md:text-xl text-white/70 max-w-xl leading-relaxed font-light"
           >
-            We don&apos;t just print boxes and labels; we architect brand
-            experiences. Industry-leading offset and digital printing for Sri
+            We don&apos;t just print boxes and labels. we architect brand
+            experiences. Delivering high-quality offset and digital printing for Sri
             Lanka&apos;s finest brands.
           </motion.p>
 

@@ -108,9 +108,9 @@ export default function ContactPage() {
                 <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
                   341/1/112/C, Mihidupura,
                   <br />
-                  Palenwatta, Pannipitiya,
+                  Palenwatta, 
                   <br />
-                  Maharagama
+                 Pannipitiya.
                 </p>
               </div>
             </motion.div>
@@ -125,7 +125,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-xl font-bold mb-3 text-white">Reach Us</h3>
                 <p className="text-white/60 leading-relaxed mb-3 group-hover:text-white/80 transition-colors">
-                  Main: +94 11 296 8326
+                  Hotline : +94 72 888 8509
                   <br />
                   Sales: +94 76 252 4819
                 </p>
@@ -151,9 +151,9 @@ export default function ContactPage() {
                   Digital Mail
                 </h3>
                 <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
-                  info@ranpa.lk
+                  hdprintingandpackaging@gmail.com
                   <br />
-                  quotes@ranpa.lk
+                  hdprintingandpackaging@gmail.com
                 </p>
               </div>
             </motion.div>

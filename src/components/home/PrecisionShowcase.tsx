@@ -22,7 +22,7 @@ const visualCards = [
 ];
 
 const statOrbs = [
-  { value: "24h", label: "Fast Turnaround", position: "top-6 right-8" },
+  { value: "Quality", label: "Offset Printing", position: "top-6 right-8" },
   { value: "CMYK", label: "Color Precision", position: "bottom-10 left-0" },
   { value: "HD", label: "Premium Finish", position: "bottom-0 right-14" },
 ];
