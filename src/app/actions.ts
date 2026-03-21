@@ -7,8 +7,17 @@ type FormState = {
   message: string;
 };
 
+type ResendAttachment = {
+  filename: string;
+  content: string;
+  content_type: string;
+  content_id: string;
+};
+
 const QUOTE_NOTIFICATION_EMAIL =
   process.env.QUOTE_NOTIFICATION_EMAIL || "hdprintingandpackaging@gmail.com";
+const CONTACT_NOTIFICATION_EMAIL =
+  process.env.CONTACT_NOTIFICATION_EMAIL || QUOTE_NOTIFICATION_EMAIL;
 
 async function sendQuoteNotificationEmail(payload: {
   name: string;
@@ -31,7 +40,7 @@ async function sendQuoteNotificationEmail(payload: {
     return;
   }
 
-  let attachments: any[] = [];
+  let attachments: ResendAttachment[] = [];
   let imageHtml = `<p><strong>Uploaded File:</strong> No file attached</p>`;
 
   if (payload.file && payload.file.size > 0 && payload.file.type.startsWith("image/")) {
@@ -93,6 +102,53 @@ async function sendQuoteNotificationEmail(payload: {
   if (!response.ok) {
     const body = await response.text();
     throw new Error(`Failed to send quote email: ${body}`);
+  }
+}
+
+async function sendContactNotificationEmail(payload: {
+  name: string;
+  email: string;
+  phone: string | null;
+  message: string;
+}) {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendFromEmail =
+    process.env.RESEND_FROM_EMAIL || "HD Printing & Packaging <onboarding@resend.dev>";
+
+  if (!resendApiKey) {
+    console.warn("RESEND_API_KEY not configured. Skipping contact email notification.");
+    return;
+  }
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
+      <h2>New Contact Message Received</h2>
+      <p><strong>Name:</strong> ${payload.name}</p>
+      <p><strong>Email:</strong> ${payload.email}</p>
+      <p><strong>Phone:</strong> ${payload.phone || "-"}</p>
+      <p><strong>Message:</strong> ${payload.message}</p>
+    </div>
+  `;
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: resendFromEmail,
+      to: [CONTACT_NOTIFICATION_EMAIL],
+      reply_to: payload.email,
+      subject: `New Contact Message from ${payload.name}`,
+      html,
+      text: `New contact message received from ${payload.name}`,
+    }),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Failed to send contact email: ${body}`);
   }
 }
 export async function submitQuote(
@@ -169,20 +225,25 @@ export async function submitContact(
       };
     }
     
-    // Real Supabase insert
-    const { error } = await supabase.from('contact_messages').insert([
-      {
-        name: rawFormData.name,
-        email: rawFormData.email,
-        phone: rawFormData.phone || null,
-        message: rawFormData.message,
-        status: 'pending'
-      }
-    ]);
+    const payload = {
+      name: String(rawFormData.name),
+      email: String(rawFormData.email),
+      phone: rawFormData.phone ? String(rawFormData.phone) : null,
+      message: String(rawFormData.message),
+      status: "pending",
+    };
+
+    const { error } = await supabase.from("contact_messages").insert([payload]);
 
     if (error) {
       console.error("Supabase insert error:", error);
       throw error;
+    }
+
+    try {
+      await sendContactNotificationEmail(payload);
+    } catch (emailError) {
+      console.error("Contact email notification failed:", emailError);
     }
 
     return { 

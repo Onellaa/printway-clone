@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { submitContact } from "@/app/actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,17 +13,20 @@ import {
   Send,
   MessageSquare,
   ArrowRight,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
-import { useEffect } from "react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 
 export default function ContactPage() {
   const [state, formAction, isPending] = useActionState(submitContact, null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (state?.success) {
       toast.success(state.message);
+      formRef.current?.reset();
     } else if (state?.success === false) {
       toast.error(state.message);
     }
@@ -103,11 +106,11 @@ export default function ContactPage() {
                   Our Print House
                 </h3>
                 <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
-                  238/10, Samagi Mawatha,
+                  341/1/112/C, Mihidupura,
                   <br />
-                  Hirana,
+                  Palenwatta, Pannipitiya,
                   <br />
-                  Panadura
+                  Maharagama
                 </p>
               </div>
             </motion.div>
@@ -171,7 +174,11 @@ export default function ContactPage() {
                 Send a Direct Message
               </h2>
 
-              <form action={formAction} className="space-y-6 relative z-10">
+              <form
+                action={formAction}
+                ref={formRef}
+                className="space-y-6 relative z-10"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <Label htmlFor="name" className="text-white/70 ml-1">
@@ -228,6 +235,7 @@ export default function ContactPage() {
                 </div>
 
                 <Button
+                  type="submit"
                   disabled={isPending}
                   className="w-full h-16 text-lg font-bold bg-[#7f1d1d] text-white hover:bg-[#ef4444] hover:scale-[1.02] transition-all duration-300 shadow-[0_0_20px_rgba(239,68,68,0.28)] rounded-xl mt-4 group"
                 >
@@ -238,13 +246,38 @@ export default function ContactPage() {
                 </Button>
 
                 {state?.success && (
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-green-400 text-sm font-medium mt-4 text-center bg-green-400/10 py-3 rounded-lg border border-green-400/20"
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    className="mt-4 rounded-xl border border-green-400/20 bg-green-400/10 px-5 py-4 text-center"
+                    aria-live="polite"
                   >
-                    Message received loud and clear. We&apos;ll be in touch.
-                  </motion.p>
+                    <div className="flex items-center justify-center gap-2 text-green-400">
+                      <CheckCircle2 className="h-5 w-5" />
+                      <p className="text-sm font-semibold">
+                        Message received loud and clear.
+                      </p>
+                    </div>
+                    <p className="mt-1 text-sm text-green-300/80">
+                      We&apos;ll be in touch soon.
+                    </p>
+                  </motion.div>
+                )}
+
+                {state?.success === false && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    className="mt-4 rounded-xl border border-red-400/20 bg-red-500/10 px-5 py-4 text-center"
+                    aria-live="polite"
+                  >
+                    <div className="flex items-center justify-center gap-2 text-red-300">
+                      <AlertCircle className="h-5 w-5" />
+                      <p className="text-sm font-semibold">
+                        {state.message || "Something went wrong while sending your message."}
+                      </p>
+                    </div>
+                  </motion.div>
                 )}
               </form>
             </div>
