@@ -108,9 +108,9 @@ export default function ContactPage() {
                 <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
                   341/1/112/C, Mihidupura,
                   <br />
-                  Palenwatta, 
+                  Palenwatta,
                   <br />
-                 Pannipitiya.
+                  Pannipitiya.
                 </p>
               </div>
             </motion.div>
@@ -151,8 +151,6 @@ export default function ContactPage() {
                   Digital Mail
                 </h3>
                 <p className="text-white/60 leading-relaxed group-hover:text-white/80 transition-colors">
-                  hdprintingandpackaging@gmail.com
-                  <br />
                   hdprintingandpackaging@gmail.com
                 </p>
               </div>
@@ -274,7 +272,8 @@ export default function ContactPage() {
                     <div className="flex items-center justify-center gap-2 text-red-300">
                       <AlertCircle className="h-5 w-5" />
                       <p className="text-sm font-semibold">
-                        {state.message || "Something went wrong while sending your message."}
+                        {state.message ||
+                          "Something went wrong while sending your message."}
                       </p>
                     </div>
                   </motion.div>
