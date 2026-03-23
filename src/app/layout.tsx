@@ -9,12 +9,38 @@ import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title:
-    "HD Printing & Packaging | Premium Commercial Printing & Packaging Solutions",
+  title: "HD Printing & Packaging | Printing & Packaging Services in Sri Lanka",
   description:
-    "HD Printing & Packaging is Sri Lanka's premier printing and packaging company offering custom design, digital printing, offset printing, labels, stickers, and box packaging solutions.",
-  keywords:
-    "printing Sri Lanka, packaging Sri Lanka, custom labels, offset printing, digital printing, business cards, boxes",
+    "HD Printing & Packaging offers high-quality printing, packaging, labels, stickers, business cards, and custom box solutions in Sri Lanka. Contact us for professional printing services.",
+  keywords: [
+    "HD Printing & Packaging",
+    "printing Sri Lanka",
+    "packaging Sri Lanka",
+    "custom labels",
+    "stickers Sri Lanka",
+    "offset printing",
+    "digital printing",
+    "business cards",
+    "box packaging",
+  ],
+  metadataBase: new URL("https://www.hdprintingandpackaging.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "HD Printing & Packaging",
+    description:
+      "Premium printing and packaging services in Sri Lanka. Custom labels, boxes, stickers, business cards, and more.",
+    url: "https://www.hdprintingandpackaging.com",
+    siteName: "HD Printing & Packaging",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HD Printing & Packaging",
+    description: "Premium printing and packaging services in Sri Lanka.",
+  },
 };
 
 export default function RootLayout({
