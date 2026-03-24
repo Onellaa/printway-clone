@@ -177,6 +177,14 @@ export default function ContactPage() {
                 ref={formRef}
                 className="space-y-6 relative z-10"
               >
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <Label htmlFor="name" className="text-white/70 ml-1">

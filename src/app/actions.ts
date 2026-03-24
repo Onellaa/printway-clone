@@ -105,6 +105,47 @@ async function sendQuoteNotificationEmail(payload: {
   }
 }
 
+
+
+function clean(value: FormDataEntryValue | undefined | null) {
+  return String(value ?? "").trim();
+}
+
+function containsBlockedLink(text: string) {
+  const lower = text.toLowerCase();
+  return (
+    lower.includes("http://") ||
+    lower.includes("https://") ||
+    lower.includes("www.") ||
+    /(?:[a-z0-9-]+\.)+[a-z]{2,}/i.test(text)
+  );
+}
+
+function looksLikeSpam(text: string) {
+  const lower = text.toLowerCase();
+
+  const spamPhrases = [
+    "seo optimization",
+    "one-time seo",
+    "no monthly fees",
+    "fix all major website errors",
+    "limited slots",
+    "grab this deal",
+  ];
+
+  return spamPhrases.some((phrase) => lower.includes(phrase));
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone: string) {
+  return /^[0-9+()\-\s]{7,20}$/.test(phone);
+}
+
+
+
 async function sendContactNotificationEmail(payload: {
   name: string;
   email: string;
@@ -151,6 +192,8 @@ async function sendContactNotificationEmail(payload: {
     throw new Error(`Failed to send contact email: ${body}`);
   }
 }
+
+
 export async function submitQuote(
   _prevState: FormState | null,
   formData: FormData
@@ -158,26 +201,71 @@ export async function submitQuote(
   try {
     const rawFormData = Object.fromEntries(formData.entries());
 
-    if (!rawFormData.name || !rawFormData.email || !rawFormData.phone || !rawFormData.service_type) {
+    const name = clean(rawFormData.name);
+    const company = clean(rawFormData.company);
+    const email = clean(rawFormData.email);
+    const phone = clean(rawFormData.phone);
+    const serviceType = clean(rawFormData.service_type);
+    const dimensions = clean(rawFormData.dimensions);
+    const material = clean(rawFormData.material);
+    const message = clean(rawFormData.message);
+    const website = clean(rawFormData.website); // honeypot
+
+    if (website) {
+      return {
+        success: true,
+        message: "Quote request submitted successfully. Our team will contact you shortly.",
+      };
+    }
+
+    if (!name || !email || !phone || !serviceType) {
       return {
         success: false,
-        message: "Please fill in all required fields."
+        message: "Please fill in all required fields.",
+      };
+    }
+
+    if (!isValidEmail(email)) {
+      return {
+        success: false,
+        message: "Please enter a valid email address.",
+      };
+    }
+
+    if (!isValidPhone(phone)) {
+      return {
+        success: false,
+        message: "Please enter a valid phone number.",
+      };
+    }
+
+    if (message && (containsBlockedLink(message) || looksLikeSpam(message))) {
+      return {
+        success: false,
+        message: "Your request was blocked by spam protection.",
       };
     }
 
     const file = formData.get("file") as File | null;
 
+    if (file && file.size > 25 * 1024 * 1024) {
+      return {
+        success: false,
+        message: "File is too large. Maximum size is 25MB.",
+      };
+    }
+
     const payload = {
-      name: String(rawFormData.name),
-      company: rawFormData.company ? String(rawFormData.company) : null,
-      email: String(rawFormData.email),
-      phone: String(rawFormData.phone),
-      service_type: String(rawFormData.service_type),
+      name,
+      company: company || null,
+      email,
+      phone,
+      service_type: serviceType,
       quantity: rawFormData.quantity ? parseInt(String(rawFormData.quantity), 10) : null,
-      dimensions: rawFormData.dimensions ? String(rawFormData.dimensions) : null,
-      material: rawFormData.material ? String(rawFormData.material) : null,
+      dimensions: dimensions || null,
+      material: material || null,
       deadline: rawFormData.deadline ? String(rawFormData.deadline) : null,
-      message: rawFormData.message ? String(rawFormData.message) : null,
+      message: message || null,
       status: "pending",
     };
 
@@ -199,16 +287,17 @@ export async function submitQuote(
 
     return {
       success: true,
-      message: "Quote request submitted successfully. Our team will contact you shortly."
+      message: "Quote request submitted successfully. Our team will contact you shortly.",
     };
   } catch (error) {
     console.error("Failed to submit quote", error);
     return {
       success: false,
-      message: "An error occurred while submitting your request. Please try again later."
+      message: "An error occurred while submitting your request. Please try again later.",
     };
   }
 }
+
 
 export async function submitContact(
   _prevState: FormState | null,
@@ -216,20 +305,61 @@ export async function submitContact(
 ): Promise<FormState> {
   try {
     const rawFormData = Object.fromEntries(formData.entries());
-    
-    // Server-side validation
-    if (!rawFormData.name || !rawFormData.email || !rawFormData.message) {
+
+    const name = clean(rawFormData.name);
+    const email = clean(rawFormData.email);
+    const phone = clean(rawFormData.phone);
+    const message = clean(rawFormData.message);
+    const website = clean(rawFormData.website); // honeypot
+
+    // Honeypot: real users won't fill this
+    if (website) {
       return {
-        success: false,
-        message: "Please fill in all required fields."
+        success: true,
+        message: "Message sent successfully. We will be in touch soon.",
       };
     }
-    
+
+    if (!name || !email || !message) {
+      return {
+        success: false,
+        message: "Please fill in all required fields.",
+      };
+    }
+
+    if (!isValidEmail(email)) {
+      return {
+        success: false,
+        message: "Please enter a valid email address.",
+      };
+    }
+
+    if (phone && !isValidPhone(phone)) {
+      return {
+        success: false,
+        message: "Please enter a valid phone number.",
+      };
+    }
+
+    if (message.length < 10 || message.length > 2000) {
+      return {
+        success: false,
+        message: "Please enter a meaningful message.",
+      };
+    }
+
+    if (containsBlockedLink(message) || looksLikeSpam(message)) {
+      return {
+        success: false,
+        message: "Your message was blocked by spam protection.",
+      };
+    }
+
     const payload = {
-      name: String(rawFormData.name),
-      email: String(rawFormData.email),
-      phone: rawFormData.phone ? String(rawFormData.phone) : null,
-      message: String(rawFormData.message),
+      name,
+      email,
+      phone: phone || null,
+      message,
       status: "pending",
     };
 
@@ -246,15 +376,15 @@ export async function submitContact(
       console.error("Contact email notification failed:", emailError);
     }
 
-    return { 
-      success: true, 
-      message: "Message sent successfully. We will be in touch soon."
+    return {
+      success: true,
+      message: "Message sent successfully. We will be in touch soon.",
     };
   } catch (error) {
     console.error("Failed to submit contact", error);
-    return { 
-      success: false, 
-      message: "An error occurred while sending your message. Please try again later."
+    return {
+      success: false,
+      message: "An error occurred while sending your message. Please try again later.",
     };
   }
 }
