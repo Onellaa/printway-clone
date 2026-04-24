@@ -56,7 +56,7 @@ export function Footer() {
                   href="/customers"
                   className="hover:text-white transition-colors"
                 >
-                  Our Customers
+                  Our Clients
                 </Link>
               </li>
               <li>

@@ -10,7 +10,7 @@ export default function CustomersPage() {
         <div className="container relative z-10 mx-auto">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c08a98] md:text-sm md:tracking-[0.36em]">
-              Our Customers
+              Our Clients
             </p>
             <h1 className="mt-4 text-balance text-4xl font-black tracking-tight md:mt-6 md:text-6xl lg:text-7xl">
               Trusted by Leading Brands
@@ -47,7 +47,7 @@ export default function CustomersPage() {
               Featured Brands
             </p>
             <h2 className="mt-3 text-2xl font-black tracking-tight md:mt-4 md:text-3xl">
-              Main customers with the strongest visual emphasis.
+              Main clients with the strongest visual emphasis.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-white/60 md:mt-4 md:text-base">
               These brands are highlighted throughout the orbit section and the
@@ -71,10 +71,10 @@ export default function CustomersPage() {
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#c08a98] md:text-sm md:tracking-[0.3em]">
-                  Extended Customer List
+                  Extended Client List
                 </p>
                 <h2 className="mt-3 text-2xl font-black tracking-tight md:mt-4 md:text-3xl">
-                  Additional brands in our customer network.
+                  Additional brands in our client network.
                 </h2>
               </div>
               <p className="text-xs text-white/45 md:text-sm">

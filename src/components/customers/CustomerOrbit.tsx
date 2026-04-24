@@ -81,7 +81,7 @@ export function CustomerOrbit({
             Trusted Network
           </p>
           <h3 className="mt-2 text-balance text-lg font-black leading-tight text-white md:text-2xl">
-            Our Trusted Customers
+            Our Trusted Clients
           </h3>
         </div>
       </div>

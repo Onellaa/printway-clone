@@ -47,7 +47,7 @@ export function CustomersPreview({
                   href="/customers"
                   className="inline-flex items-center gap-2 rounded-full border border-[#8f2744]/40 bg-[#20171b] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:border-[#c08a98] hover:text-[#f2d7de]"
                 >
-                  See More Customers
+                  See More Clients
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -91,8 +91,8 @@ export function CustomersPreview({
     );
   }
 
-  const eyebrow = "Our Customers";
-  const title = "A customer network that spans household names and high-volume brands.";
+  const eyebrow = "Our Clients";
+  const title = "A client network that spans household names and high-volume brands.";
   const description =
     "From FMCG and paints to lifestyle and manufacturing, our work supports brands that need dependable quality in every run.";
 
@@ -127,7 +127,7 @@ export function CustomersPreview({
             href="/customers"
             className="inline-flex items-center gap-2 rounded-full border border-[#8f2744]/40 bg-[#20171b] px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(0,0,0,0.22)] transition-all hover:-translate-y-0.5 hover:border-[#c08a98] hover:text-[#f2d7de]"
           >
-            See More Customers
+            See More Clients
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
