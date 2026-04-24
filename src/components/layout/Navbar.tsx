@@ -13,6 +13,7 @@ const navLinks = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Packaging", href: "/packaging" },
+  { name: "Our Customers", href: "/customers" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -53,7 +54,7 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className={`text-sm font-medium transition-colors relative group ${
+                className={`text-base font-semibold transition-colors relative group ${
                   isActive ? "text-[#fbbf24]" : "text-white/80 hover:text-white"
                 }`}
               >
@@ -72,7 +73,7 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-4">
           <Link href="/quote">
-            <Button className="bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
+            <Button className="h-11 px-5 text-base font-semibold bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
               Request a Quote
             </Button>
           </Link>
@@ -103,7 +104,7 @@ export function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`text-lg font-medium border-b border-white/5 pb-2 transition-colors ${
+                    className={`text-xl font-semibold border-b border-white/5 pb-2 transition-colors ${
                       isActive ? "text-[#fbbf24]" : "text-white/80 hover:text-white"
                     }`}
                     onClick={() => setMobileMenuOpen(false)}
@@ -117,7 +118,7 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-4"
               >
-                <Button className="w-full bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
+                <Button className="h-12 w-full text-base font-semibold bg-[#7f1d1d] text-white hover:bg-[#ef4444] shadow-[0_0_20px_rgba(239,68,68,0.25)]">
                   Request a Quote
                 </Button>
               </Link>

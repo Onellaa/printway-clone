@@ -3,10 +3,6 @@ import {
   MapPin,
   Phone,
   Mail,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
 } from "lucide-react";
 import { BrandLogo } from "@/components/layout/BrandLogo";
 
@@ -53,6 +49,14 @@ export function Footer() {
                   className="hover:text-white transition-colors"
                 >
                   Packaging Solutions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/customers"
+                  className="hover:text-white transition-colors"
+                >
+                  Our Customers
                 </Link>
               </li>
               <li>

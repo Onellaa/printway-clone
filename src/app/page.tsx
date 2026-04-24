@@ -3,6 +3,7 @@ import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { CTASection } from "@/components/home/CTASection";
 import { PrecisionShowcase } from "@/components/home/PrecisionShowcase";
 import { MotionPanels } from "@/components/home/MotionPanels";
+import { CustomersPreview } from "@/components/customers/CustomersPreview";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <PrecisionShowcase />
       <ServicesGrid />
       <MotionPanels />
+      <CustomersPreview preview />
       <CTASection />
     </div>
   );

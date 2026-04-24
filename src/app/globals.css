@@ -123,3 +123,41 @@
     @apply font-sans;
   }
 }
+
+@keyframes customer-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes customer-orbit-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@layer utilities {
+  .customer-orbit-ring {
+    animation-name: customer-orbit;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  .customer-orbit-ring-reverse {
+    animation-name: customer-orbit-reverse;
+  }
+
+  .group\/ring:hover .customer-orbit-ring,
+  .group\/ring:hover .customer-orbit-ring-reverse {
+    animation-play-state: paused;
+  }
+}

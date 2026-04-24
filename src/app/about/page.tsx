@@ -15,13 +15,11 @@ export default function AboutPage() {
           >
             <span className="text-[#fbbf24] font-semibold tracking-wider uppercase text-sm mb-4 block">Our Story</span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Pioneering Print Excellence in Sri Lanka</h1>
-            <div className="space-y-6 text-lg text-white/70">
+            <div className="space-y-6 text-lg text-white/90">
               <p>
                 Founded with a vision to revolutionize the commercial printing landscape, HD Printing &amp; Packaging has grown to become Sri Lanka&apos;s most trusted name in premium printing and custom packaging solutions.
               </p>
-              <p>
-                From massive offset production runs to intricate, foil-stamped cosmetic packaging, our state-of-the-art facility is equipped to handle the most demanding creative requirements. We don&apos;t just print ink on paper; we craft tactile experiences that elevate your brand&apos;s physical presence.
-              </p>
+              
             </div>
           </motion.div>
 
