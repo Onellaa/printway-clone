@@ -64,8 +64,7 @@ export default function PackagingPage() {
               Box packaging solutions for different product types.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/55 md:text-xl">
-              This page focuses on packaging services only, with clearly grouped packaging options for
-              shoe boxes, paint brush boxes, bags, and other custom product boxes.
+              We provide packaging for shoe boxes, product boxes, bags, and more.
             </p>
           </motion.div>
 
@@ -110,7 +109,7 @@ export default function PackagingPage() {
               </h2>
             </div>
             <p className="max-w-xl text-base leading-relaxed text-white/55 md:text-right">
-              Each item is presented clearly so clients can quickly see what types of packaging are available.
+              Our packaging options.
             </p>
           </div>
 

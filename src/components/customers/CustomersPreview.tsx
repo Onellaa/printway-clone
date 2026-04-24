@@ -28,8 +28,7 @@ export function CustomersPreview({
                 Brands that trust us when the finish has to look right the first time.
               </h2>
               <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/60">
-                A focused home-page preview of the companies we support with print, packaging,
-                and production consistency at scale.
+              Some of our main clients who trust us for their printing work.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">

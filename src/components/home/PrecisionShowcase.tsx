@@ -82,8 +82,7 @@ export function PrecisionShowcase() {
             Built to feel premium before a single word is read.
           </h2>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-white/60">
-            A sharper, more visual homepage that shows production quality,
-            material finish, and scale through motion rather than long blocks of copy.
+              A simple visual look at our printing and packaging work.
           </p>
 
           <div className="relative mt-10 h-[360px]">

@@ -48,7 +48,7 @@ export function MotionPanels() {
             </h2>
           </div>
           <p className="max-w-md text-base leading-relaxed text-white/50 md:text-right">
-            Subtle movement, strong color control, and visual rhythm that keeps the page interesting without feeling noisy.
+          A quick look at our printing, packaging, labels, and branding work.
           </p>
         </motion.div>
 
