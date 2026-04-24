@@ -8,15 +8,15 @@ type CustomerLogoCardProps = {
 };
 
 const sizeClasses = {
-  sm: "w-32 px-3 py-3.5 text-xs md:w-36",
-  md: "w-36 px-3.5 py-4 text-sm md:w-40",
-  lg: "w-40 px-4 py-4.5 text-sm md:w-48",
+  sm: "min-h-[7.25rem] w-full max-w-[7rem] px-2.5 py-2.5 text-[11px] md:min-h-[9.25rem] md:max-w-none md:w-36 md:px-3 md:py-3.5 md:text-xs",
+  md: "min-h-[8.25rem] w-full max-w-[8.5rem] px-3 py-3 text-[12px] md:min-h-[10.25rem] md:max-w-none md:w-40 md:px-3.5 md:py-4 md:text-sm",
+  lg: "min-h-[9rem] w-full max-w-[9rem] px-3 py-3.5 text-[12px] md:min-h-[11.75rem] md:max-w-none md:w-48 md:px-4 md:py-4.5 md:text-sm",
 };
 
 const logoWrapClasses = {
-  sm: "h-16 w-16 md:h-[4.5rem] md:w-[4.5rem]",
-  md: "h-[4.5rem] w-[4.5rem] md:h-20 md:w-20",
-  lg: "h-[5.5rem] w-[5.5rem] md:h-28 md:w-28",
+  sm: "h-12 w-12 md:h-[4.5rem] md:w-[4.5rem]",
+  md: "h-14 w-14 md:h-20 md:w-20",
+  lg: "h-16 w-16 md:h-28 md:w-28",
 };
 
 export function CustomerLogoCard({
@@ -46,7 +46,7 @@ export function CustomerLogoCard({
         )}
       </div>
 
-      <span className="mt-3.5 max-w-full text-balance text-[0.95em] font-semibold leading-tight text-[#3a262d] md:text-[1em]">
+      <span className="mt-2.5 max-w-full text-balance text-[0.92em] font-semibold leading-tight text-[#3a262d] md:mt-3.5 md:text-[1em]">
         {customer.name}
       </span>
     </div>

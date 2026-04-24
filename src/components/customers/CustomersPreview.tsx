@@ -56,24 +56,32 @@ export function CustomersPreview({
 
             <div className="relative">
               <div className="absolute inset-0 rounded-[2.5rem] border border-white/6 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_34%)]" />
-              <div className="grid grid-cols-2 gap-5 rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.28)] backdrop-blur-xl md:p-7">
+              <div className="grid grid-cols-2 gap-4 rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.28)] backdrop-blur-xl md:gap-5 md:p-7">
                 {featuredCustomers.map((customer, index) => (
                   <div
                     key={customer.slug}
-                    className={`rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.18)] ${
+                    className={`flex h-full flex-col rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-3.5 shadow-[0_24px_70px_rgba(0,0,0,0.18)] md:rounded-[2rem] md:p-4 ${
                       index === 0
-                        ? "translate-y-3"
+                        ? "md:translate-y-3"
                         : index === 1
-                          ? "-translate-y-2"
+                          ? "md:-translate-y-2"
                           : index === 2
-                            ? "translate-y-1"
-                            : "-translate-y-4"
+                            ? "md:translate-y-1"
+                            : "md:-translate-y-4"
                     }`}
+                    style={{
+                      animationDelay: `${index * 0.4}s`,
+                    }}
                   >
-                    <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#c08a98]">
+                    <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#c08a98] md:text-[11px] md:tracking-[0.24em]">
                       Featured Brand
                     </div>
-                    <CustomerLogoCard customer={customer} size="lg" className="mx-auto" />
+                    <div
+                      className="mx-auto animate-[customer-card-float_5.8s_ease-in-out_infinite]"
+                      style={{ animationDelay: `${index * 0.45}s` }}
+                    >
+                      <CustomerLogoCard customer={customer} size="lg" className="mx-auto" />
+                    </div>
                   </div>
                 ))}
               </div>
